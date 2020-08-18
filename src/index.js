@@ -48,7 +48,7 @@ const totalPoint = 2 * (graphs.length - 1)
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         //???????? nothing to save
-        //user.id:UID,
+        //UID：user.id, SID：session.id，score=user.score???
 
       })
   }
