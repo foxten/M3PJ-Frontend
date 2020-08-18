@@ -1,3 +1,41 @@
 .imgCenter {
   text-align: center;
 }
+
+body  {
+  background-image: url("https://previews.123rf.com/images/viktorijareut/viktorijareut1807/viktorijareut180700691/104932110-mathematics-pattern-background-with-different-math-symbols-colorful-school-pattern-for-children-math.jpg" );
+}
+
+
+.card {
+  text-align: center;
+  border: grey solid;
+  padding: 3rem;
+  width: 17rem;
+  height: 20rem;
+  display: inline-grid;
+  margin: 1rem 2rem;
+
+  
+}
+
+.submit {
+  background-color:   #ffcc66  ;
+  /* border: none; */
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 20px;
+  margin: 4px 30px;
+  cursor: pointer;
+}
+
+/* .graph-collection{
+
+
+
+} */
+
+
