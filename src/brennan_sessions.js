@@ -5,15 +5,17 @@
 
 
 function main() {
-    newGameListener()
+    clickListener()
     updateLeaderBoard()
 }
 
-function newGameListener() {
-    const newGame = document.getElementById('new')
-    newGame.addEventListener('click', function(event){
-        const session = document.getElementById(`sessions`)
-        session.innerHTML += `<p>Session: ${session.id}</p>`
+function clickListener() {
+    const newGameClick = document.addEventListener('click', function(event) {
+        if (event.target.id === 'restart' || event.target.id === "new"){
+            console.log(event);
+            gameStart()
+        }
+  
 
         const reqObj = {
             method: 'POST',
@@ -29,6 +31,10 @@ function newGameListener() {
     })
 }
 
+
+function gameStart() {
+    
+}
 
 function updateLeaderBoard() {
 
