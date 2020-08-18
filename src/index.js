@@ -16,8 +16,8 @@ function renderGraph(graph){
       <h2>${graph.id}. Input your answer. </h2>
       <img src="${graph.image_url}.png" class="graph-img" width="250" height="200"/>
       <p> Y = mx+b</p>
-      <input type="text" id="mKey" value="m value"> 
-      <input type="text" id="bKey" value="b value">
+      <input type="text" id="mKey" placeholder="m value"> 
+      <input type="text" id="bKey" placeholder="b value">
       </div>`
       const collection = document.getElementById('graph-collection')
       collection.innerHTML += card
