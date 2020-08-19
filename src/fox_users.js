@@ -60,16 +60,24 @@ function userDashboard(user){
     const userInfo = `
     <h2>Welcome ${user.username}</h2>
     <ul id="scores">Scores:</ul>
-    <button type="button" data-id=${user.id} id="new">Start a New Game!</button>
+    <button type="button" data-id=${user.id} id="new">Start a New Game</button>      
+    <button type="button" data-id=${user.id} id="restart">Play Again</button>
     <button type="button" data-id=${user.id} id="edit-username">Edit Username</button>
     <button type="button" data-id=${user.id} id="delete-me">Delete Account</button>
     `
     dashboard.innerHTML = userInfo
+        if (user.sessions.count > 0){
         user.sessions.forEach(session => {
             const newItem = `<li>${session.score}</li>`
             document.querySelector('#scores').innerHTML += newItem
         })
-    dashboard.addEventListener('click', function(event){
+        }else{
+            const noItems = `<li>You have no previous games.</li>`
+            document.querySelector('#scores').innerHTML = noItems
+        
+        }
+    
+        dashboard.addEventListener('click', function(event){
         if (event.target.id === 'edit-username'){
             dashboard.innerHTML = `
             <form id="username">
