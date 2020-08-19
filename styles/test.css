@@ -1,0 +1,101 @@
+body  {
+    background-color: #FAFBFB;
+    font-family: "Lucida Console", Monaco, monospace;
+  }
+
+  .graph-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }
+  
+  
+  .card {
+    text-align: center;
+    border: grey solid;
+    padding: 2rem;
+    width: 25rem;
+    height: 40rem;
+    display: inline-grid;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+
+    
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }
+  
+  .clickNext {
+    background-color:#ffcc66  ;
+    color: black;
+    padding: 8px 10px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  
+  #header {
+    background-color: #71B9DA;
+    color: white;
+    font-size: 42px;
+    text-align: center;;
+    padding: 10px;
+}
+
+.dashboard {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 80%;
+}
+
+form {
+    width: 80%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    background-color: #71B9DA; 
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+#submit {
+    background-color: #71B9DA; 
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+#graph-collection {
+    font-size: 15px;
+}
+
+#scores {
+    font-size: 20;
+}
+
+
+  
+  
+  
