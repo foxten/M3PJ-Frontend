@@ -1,17 +1,17 @@
 const graphURL="http://localhost:3000/graphs"
 
-function fetchGraphs(){
+function fetchGraphs(sessionId){
   // fetch(`${graphURL}/${graphID}`)
-  fetch(`http://localhost:3000/graphs/32`)
+  fetch(`http://localhost:3000/graphs/1`)
   .then(resp => resp.json())
   .then(jsonData => {
-  renderGraph(jsonData)
+  renderGraph(jsonData, sessionId)
     })
   }
 
-function renderGraph(graph){
+function renderGraph(graph, session){
   
-      const card = `<div class="card" data-id= "${graph.id}" style="background-color:white;">
+      const card = `<div class="card" data-id= "${session}" style="background-color:white;">
       <h2>${graph.id}. Input your answer. </h2>
       <img src="${graph.image_url}.png" class="graph-img" width="250" height="200"/>
 
@@ -21,6 +21,8 @@ function renderGraph(graph){
       <button id="clickNext" data-id= "${graph.id}" style="float: right;"> Next </button>
 
       </div>`
+
+      //need to add submit button to div card with session stored as data-id
       const collection = document.getElementById('graph-collection')
       collection.innerHTML = card
       const clickNext = document.getElementById('clickNext')
