@@ -66,7 +66,7 @@ function userDashboard(user){
     <button type="button" data-id=${user.id} id="delete-me">Delete Account</button>
     `
     dashboard.innerHTML = userInfo
-        if (user.sessions){
+        if (user.sessions.count > 0){
         user.sessions.forEach(session => {
             const newItem = `<li>${session.score}</li>`
             document.querySelector('#scores').innerHTML += newItem
