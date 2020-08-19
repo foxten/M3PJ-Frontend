@@ -1,8 +1,8 @@
 const graphURL="http://localhost:3000/graphs"
 
-function fetchGraphs(graphID){
+function fetchGraphs(){
   // fetch(`${graphURL}/${graphID}`)
-  fetch(`http://localhost:3000/graphs/1`)
+  fetch(`http://localhost:3000/graphs/32`)
   .then(resp => resp.json())
   .then(jsonData => {
   renderGraph(jsonData)
@@ -88,5 +88,5 @@ fetch(`${graphURL}/${updateGraphID}`)
 // }
 
 //Invoke 
-fetchGraphs()
+//fetchGraphs()
 // clickNext()
