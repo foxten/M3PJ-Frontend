@@ -6,7 +6,7 @@ function originalDiv(){
     <form id="username">
     <input type='text' placeholder="Username"></input>
     <input type='submit' id='submit' value='Login'></input>
-    </form>`
+  </form>`
 }
 
 function newUserListener(){
@@ -66,8 +66,8 @@ function userDashboard(user){
     <button type="button" data-id=${user.id} id="delete-me">Delete Account</button>
     `
     dashboard.innerHTML = userInfo
-        if (user.sessions.count > 0){
-        user.sessions.forEach(session => {
+        if (user.sessions.length > 0){
+            user.sessions.forEach(session => {
             const newItem = `<li>${session.score}</li>`
             document.querySelector('#scores').innerHTML += newItem
         })
