@@ -14,25 +14,34 @@ function renderGraph(graph, session){
       const card = `<div class="card" data-id= "${session}" style="background-color:white;">
       <h2>${graph.id}. Input your answer. </h2>
       <img src="${graph.image_url}.png" class="graph-img" width="250" height="200"/>
-
-
       <br>
       <p>Y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x+ <input type="text" class="checkB" id="inputB" placeholder="b" size="3" />
-      <button id="clickNext" data-id= "${graph.id}" style="float: right;"> Next </button>
+      
+      <button id="submit" data-id= "${graph.id}" style="float: right;"> Check </button>
 
       </div>`
 
       //need to add submit button to div card with session stored as data-id
       const collection = document.getElementById('graph-collection')
       collection.innerHTML = card
-      const clickNext = document.getElementById('clickNext')
-
-      clickNext.addEventListener('click', function(event){
-      let graphID= event.target.dataset.id
-      NextGraph(graphID)
-
-})
+      submit(graph)
 }
+
+
+function submit(graph){
+  // Next()
+  const submit =document.getElementById("submit")
+  submit.addEventListener('click',function(event){
+  event.preventDefault()
+  console.log("event")
+  checkGrade(graph)
+
+  
+
+  })
+}
+
+
 
 function NextGraph(graphID){
 let updateGraphID = parseInt(graphID) + 1
@@ -43,14 +52,44 @@ fetch(`${graphURL}/${updateGraphID}`)
 })
 }
 
+function Next(){
+  const clickNext = document.getElementById('clickNext')
+  clickNext.addEventListener('click', function(event){
+  let graphID= event.target.dataset.id
+  NextGraph(graphID)
+})
+}
 
-// function clickNext(){
-// let graphID= 1
-// const clickNext = document.getElementById('clickNext')
-// clickNext.addEventListener('click', function(event){
-// console.log(event.target)
-// const mBox = document.getElementById("inputM")
-// const bBox = document.getElementById("inputB")
+function checkGrade(graph){
+  console.log("test")
+const mBox = document.getElementById("inputM")
+const bBox = document.getElementById("inputB")
+let curretS = 0
+if (mBox.value === graph.m  && parseInt(bBox.innerText) === graph.b){
+  curretS+=2
+  console.log(`your score is ${curretS}/62`)
+}else{
+  console.log("retry")
+}
+
+
+// //grab input data?
+// console.log("11")
+
+// let curretS = 0
+// //   if (mBox.value === graph.m  && parseInt(bBox.innerText) === graph.b ) {
+
+// //   }
+// //   const gradeResult = `<div id="result" data-id= "${graph.id}" >
+// //       <h2>Your grade is ${graph.id}./62. </h2>`
+// // })
+// })
+// // }
+// }
+
+}
+
+
 
 // const totalPoint = 62
 //   if (mBox.value === graph.m  && parseInt(bBox.innerText) === graph.b ) {
@@ -92,3 +131,4 @@ fetch(`${graphURL}/${updateGraphID}`)
 //Invoke 
 //fetchGraphs()
 // clickNext()
+//checkGrade()
