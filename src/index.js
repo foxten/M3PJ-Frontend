@@ -2,7 +2,7 @@ const graphURL="http://localhost:3000/graphs"
 
 function fetchGraphs(sessionId){
   // fetch(`${graphURL}/${graphID}`)
-  fetch(`http://localhost:3000/graphs/1`)
+  fetch(`http://localhost:3000/graphs/32`)
   .then(resp => resp.json())
   .then(jsonData => {
   renderGraph(jsonData, sessionId)
@@ -12,10 +12,10 @@ function fetchGraphs(sessionId){
 function renderGraph(graph, session){
   
       const card = `<div class="card" data-id= "${session}" style="background-color:white;">
-      <h2>${graph.id}. Input your answer. </h2>
-      <img src="${graph.image_url}.png" class="graph-img" width="250" height="200"/>
+      <p>${graph.id}. Input your answer. </p>
+      <img src="${graph.image_url}.png" class="graph-img" width="250" height="200" />
       <br>
-      <p>Y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x+ <input type="text" class="checkB" id="inputB" placeholder="b" size="3" />
+      <p>y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x+ <input type="text" class="checkB" id="inputB" placeholder="b" size="3" />
       
       <button id="submit" data-id= "${graph.id}" style="float: right;"> Check </button>
 
