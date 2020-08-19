@@ -23,7 +23,7 @@ function clickListener() {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({"user_id": dataId})
+            body: JSON.stringify({dataId})
           }
         
         fetch("http://localhost:3000/sessions", reqObj)
