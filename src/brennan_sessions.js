@@ -33,11 +33,12 @@ function clickListener() {
 
 
 function gameStart() {
-    
+    const div = document.getElementById('graph-collection')
 }
 
 function updateLeaderBoard() {
-
+    const ul = document.getElementById('leader-board')
+    ul.innerHTML += `<li>${session.score}.....${user.username}</li>`
 }
 
 
