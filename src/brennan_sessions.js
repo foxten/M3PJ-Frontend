@@ -6,14 +6,14 @@
 
 function main() {
     clickListener()
-    updateLeaderBoard()
+    //updateLeaderBoard()
 }
 
 function clickListener() {
     const newGameClick = document.addEventListener('click', function(event) {
+        const dataId = event.target.dataset.id
         if (event.target.id === 'restart' || event.target.id === "new"){
-            console.log(event);
-            gameStart()
+            fetchGraphs()
         }
   
 
@@ -22,7 +22,7 @@ function clickListener() {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({user_id: 1})
+            body: JSON.stringify({user_id: dataId})
           }
         
         fetch("http://localhost:3000/sessions", reqObj)
@@ -36,10 +36,10 @@ function gameStart() {
     const div = document.getElementById('graph-collection')
 }
 
-function updateLeaderBoard() {
-    const ul = document.getElementById('leader-board')
-    ul.innerHTML += `<li>${session.score}.....${user.username}</li>`
-}
+// function updateLeaderBoard() {
+//     const ul = document.getElementById('leader-board')
+//     ul.innerHTML += `<li>${session.score}.....${user.username}</li>`
+// }
 
 
 
