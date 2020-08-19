@@ -24,10 +24,12 @@ function newUserListener(){
         }
     fetch(userURL,reqObj)
         .then(resp => resp.json())
-            .then(respData => userDashboard(respData))
+            .then(respData => {    
+            userDashboard(respData)
+            userLeaderboard(respData)
+            })
     })
 }
-
 
 function editUserInfo(event){
     const update = document.querySelector('#update')
@@ -45,12 +47,8 @@ function editUserInfo(event){
         }
 
         fetch(`${userURL}/${userId}`, reqObj)
-            .then(resp => resp)
-                .then( resp => {
-                    fetch(`${userURL}/${userId}`)
-                        .then(resp => resp.json())
-                            .then(jsonData => userDashboard(jsonData))
-                })
+            .then(resp => resp.json())
+                .then(resp => userDashboard(resp))
     })
 }
 
@@ -59,25 +57,12 @@ function userDashboard(user){
     dashboard.dataset.id = user.id
     const userInfo = `
     <h2>Welcome ${user.username}</h2>
-    <ul id="scores">Scores:</ul>
     <button type="button" data-id=${user.id} id="new">Start a New Game</button>      
     <button type="button" data-id=${user.id} id="restart">Play Again</button>
     <button type="button" data-id=${user.id} id="edit-username">Edit Username</button>
     <button type="button" data-id=${user.id} id="delete-me">Delete Account</button>
     `
     dashboard.innerHTML = userInfo
-        if (user.sessions.length > 0){
-
-            user.sessions.forEach(session => {
-
-            const newItem = `<li>${session.score}</li>`
-            document.querySelector('#scores').innerHTML += newItem
-        })
-        }else{
-            const noItems = `<li>You have no previous games.</li>`
-            document.querySelector('#scores').innerHTML = noItems
-        
-        }
     
         dashboard.addEventListener('click', function(event){
         if (event.target.id === 'edit-username'){
@@ -103,6 +88,19 @@ function userDashboard(user){
             }
         }
     })
+}
+
+function userLeaderboard(user){
+    const leaderBoard = document.querySelector('#leader-board')
+        if (user.sessions.length > 0){
+            user.sessions.forEach(session => {
+            const newItem = `<li>${session.score}</li>`
+            leaderBoard.innerHTML += newItem
+        })
+        }else{
+            const noItems = `<li>You have no previous games.</li>`
+            leaderBoard.innerHTML = noItems
+        }
 }
 
 newUserListener()

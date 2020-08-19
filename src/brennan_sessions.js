@@ -12,7 +12,7 @@ function main() {
 function clickListener() {
     const newGameClick = document.addEventListener('click', function(event) {
         const dataId = event.target.dataset.id
-        console.log(dataId)
+        // console.log(dataId)
         if (event.target.id === 'restart' || event.target.id === "new"){
             // console.log(event);
 
@@ -26,7 +26,7 @@ function clickListener() {
         
         fetch("http://localhost:3000/sessions", reqObj)
           .then(res => res.json())
-          .then(data => fetchGraphs(data.id));
+          .then(data => fetchGraphs(data));
         }
     })
 }
