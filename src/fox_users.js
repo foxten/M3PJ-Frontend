@@ -67,7 +67,9 @@ function userDashboard(user){
     `
     dashboard.innerHTML = userInfo
         if (user.sessions.length > 0){
+
             user.sessions.forEach(session => {
+
             const newItem = `<li>${session.score}</li>`
             document.querySelector('#scores').innerHTML += newItem
         })
