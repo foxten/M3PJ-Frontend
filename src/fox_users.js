@@ -57,7 +57,13 @@ function userDashboard(user){
     dashboard.dataset.id = user.id
     const userInfo = `
     <h2>Welcome ${user.username}</h2>
+<<<<<<< HEAD
     <button type="button" data-id=${user.id} id="new">Start a New Game</button>      
+=======
+
+    <ul id="scores">Scores:</ul>
+    <button type="button" data-id=${user.id} id="new">Start a New Game</button>   
+>>>>>>> ce512c32f99acc94bfde85dacb871915cff5a901
     <button type="button" data-id=${user.id} id="restart">Play Again</button>
     <button type="button" data-id=${user.id} id="edit-username">Edit Username</button>
     <button type="button" data-id=${user.id} id="delete-me">Delete Account</button>
