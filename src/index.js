@@ -1,6 +1,6 @@
 const graphURL="http://localhost:3000/graphs"
 
-function fetchGraphs(graphID){
+function fetchGraphs(){
   // fetch(`${graphURL}/${graphID}`)
   fetch(`http://localhost:3000/graphs/1`)
   .then(resp => resp.json())
