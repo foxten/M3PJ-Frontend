@@ -12,11 +12,9 @@ function main() {
 function clickListener() {
     const newGameClick = document.addEventListener('click', function(event) {
         const dataId = event.target.dataset.id
+        console.log(dataId)
         if (event.target.id === 'restart' || event.target.id === "new"){
-            console.log(event);
-            fetchGraphs()
-        
-  
+            // console.log(event);
 
         const reqObj = {
             method: 'POST',
@@ -28,7 +26,7 @@ function clickListener() {
         
         fetch("http://localhost:3000/sessions", reqObj)
           .then(res => res.json())
-          .then(data => console.log(data));
+          .then(data => fetchGraphs(data.id));
         }
     })
 }
