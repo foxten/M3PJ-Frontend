@@ -6,7 +6,7 @@ function originalDiv(){
     <form id="username">
     <input type='text' placeholder="Username"></input>
     <input type='submit' id='submit' value='Login'></input>
-    </form>`
+  </form>`
 }
 
 function newUserListener(){
