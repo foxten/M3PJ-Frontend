@@ -57,11 +57,14 @@ function userDashboard(user){
     dashboard.dataset.id = user.id
     const userInfo = `
     <h2>Welcome ${user.username}</h2>
-    <button type="button" data-id=${user.id} id="new">Start a New Game</button>      
+
+    
+    <button type="button" data-id=${user.id} id="new">Start a New Game</button>   
     <button type="button" data-id=${user.id} id="restart">Play Again</button>
     <button type="button" data-id=${user.id} id="edit-username">Edit Username</button>
     <button type="button" data-id=${user.id} id="delete-me">Delete Account</button>
-    `
+ `
+
     dashboard.innerHTML = userInfo
     
         dashboard.addEventListener('click', function(event){
