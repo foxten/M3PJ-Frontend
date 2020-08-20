@@ -171,7 +171,9 @@ function finalCall(session){
   collection.innerHTML = ''
   // console.log(session)
   const finalInfo = `
-  <h2>Final Score: ${session.score}</h2>`
+  <h2>Final Score: ${session.score}</h2>
+  <button type="button" data-id=${session.user_id} id="restart">Play Again</button>
+  `
   collection.innerHTML = finalInfo
   const sessionInfo = document.querySelector('#sessions')
   sessionInfo.innerHTML = ``
