@@ -68,10 +68,9 @@ function nextButton(graph){
 function Next(session){
   document.addEventListener('click', function(event){
     if (event.target.id === 'clickNext'){
-      let graphID= event.target.dataset.id
+      let graphID = event.target.dataset.id
       NextGraph(graphID,session)
     }else if (event.target.id === 'finished'){
-      console.log('clicker works')
       finalCall(session)
     }
   })
