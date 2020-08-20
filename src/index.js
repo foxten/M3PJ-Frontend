@@ -15,8 +15,10 @@ function fetchGraphs(session){
   }
 
 function renderGraph(graph){
+
   const card = `<div class="card" style="background-color:white;">
   <h4>${graph.id}. Input your answer. </h4>
+
   <img src=${graph.image_url}.png class="graph-img" width="250" height="200"/>
   <br>
   <p>Y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x+ <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
@@ -71,10 +73,9 @@ function nextButton(graph){
 function Next(session){
   document.addEventListener('click', function(event){
     if (event.target.id === 'clickNext'){
-      let graphID= event.target.dataset.id
+      let graphID = event.target.dataset.id
       NextGraph(graphID,session)
     }else if (event.target.id === 'finished'){
-      console.log('clicker works')
       finalCall(session)
     }
   })
