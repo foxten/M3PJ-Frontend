@@ -20,7 +20,7 @@ function renderGraph(graph){
   <h4>${graph.id}. Input your answer. </h4>
   <img src=${graph.image_url}.png class="graph-img"/>
   <br>
-  <p>y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x+ <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
+  <p>y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x + <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
 
   </div>`
   const collection = document.getElementById('graph-collection')
@@ -59,6 +59,7 @@ fetch(`${graphURL}/${updateGraphID}`)
   .then(jsonData => {
   renderGraph(jsonData)
   checkButton(jsonData, session)
+  gradeArea.innerHTML = ``
   })
 }
 function nextButton(graph){
@@ -82,90 +83,177 @@ function Next(session){
     }
   })
 }
+
+
+
+// function checkGrade(graph){
+//   const mBox = document.getElementById("inputM")
+//   const bBox = document.getElementById("inputB")
+//   if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
+//     mBox.placeholder = mBox.value
+//     bBox.placeholder = bBox.value
+//     currentScore += 2 
+//     const resultMessage= `<p style="color:green;">Correct</p>`
+//     gradeArea.innerHTML = resultMessage
+//     const reqObj = {
+//       method: 'PATCH',
+//       headers: {
+//         'Content-Type':'application/json'
+//       },
+//       body: JSON.stringify({currentScore})
+//     }
+    
+//     sessionID = event.target.dataset.id
+//     fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj)
+//     .then(resp => resp.json())
+//     .then(respData => {
+//       sessionData(respData)
+//       Next(respData)
+//     })
+//     nextButton(graph)
+  
+//   }else if(clickCount===0){
+//    clickCount+=1
+//     console.log("ooo")
+//     const resultMessage= `<p style="color:red;"> Think again,you have one time to retake this question</p>`
+//     gradeArea.innerHTML = resultMessage
+//   if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
+//     mBox.placeholder = mBox.value
+//     bBox.placeholder = bBox.value
+//     currentScore++  
+//     console.log("CS",currentScore)
+//     const resultMessage= `<p style="color:green;">Correct</p>`
+//     gradeArea.innerHTML = resultMessage
+//     const reqObj2 = {
+//       method: 'PATCH',
+//       headers: {
+//         'Content-Type':'application/json'
+//       },
+//       body: JSON.stringify({currentScore})
+//     }
+    
+//     sessionID = event.target.dataset.id
+//     fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj2)
+//     .then(resp => resp.json())
+//     .then(respData => {
+//       sessionData(respData)
+//       Next(respData)
+//     })
+//     nextButton(graph)
+//     }}
+//     else if(clickCount===1){
+//     const collection = document.getElementById('graph-collection')
+//     collection.removeChild(document.getElementById('submit'))
+//     const nextButton = `<button id='clickNext' data-id=${graph.id}> Next </button>`
+//     collection.innerHTML += nextButton
+
+// }
+// }
+
 function checkGrade(graph){
   const mBox = document.getElementById("inputM")
   const bBox = document.getElementById("inputB")
-  if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
-    mBox.placeholder = mBox.value
-    bBox.placeholder = bBox.value
-    currentScore += 2 //if correct at 1first time, add 2 pts
-    const resultMessage= `<p style="color:green;">Correct</p>`
-    gradeArea.innerHTML = resultMessage
-    const reqObj = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify({currentScore})
-    }
-    
-    sessionID = event.target.dataset.id
-    fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj)
-    .then(resp => resp.json())
-    .then(respData => {
-      sessionData(respData)
-      Next(respData)
-    })
-    nextButton(graph)
-  
-  }else if(clickCount===0){
-   clickCount+=1
-    console.log("ooo")
-    const resultMessage= `<p style="color:red;"> Think again,you have one time to retake this question</p>`
-    gradeArea.innerHTML = resultMessage
-  if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
-    mBox.placeholder = mBox.value
-    bBox.placeholder = bBox.value
-    currentScore -=1   //if correct at second time, add 1pt
-    console.log("CS",currentScore)
-    const resultMessage= `<p style="color:green;">Correct</p>`
-    gradeArea.innerHTML = resultMessage
-    const reqObj2 = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify({currentScore})
-    }
-    
-    sessionID = event.target.dataset.id
-    fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj2)
-    .then(resp => resp.json())
-    .then(respData => {
-      sessionData(respData)
-      Next(respData)
-    })
-    nextButton(graph)
+    if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
+      mBox.placeholder = mBox.value
+      bBox.placeholder = bBox.value
+      if(clickCount===0){
+        currentScore += 2 
+        const resultMessage= `<p style="color:green;">Correct</p>`
+        gradeArea.innerHTML = resultMessage
+        const reqObj = {
+          method: 'PATCH',
+          headers: {
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify({currentScore})
+        }
+        
+        sessionID = event.target.dataset.id
+        fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj)
+        .then(resp => resp.json())
+        .then(respData => {
+          sessionData(respData)
+          Next(respData)
+        })
+        nextButton(graph)
+      }
+      else if (clickCount===1){
+        currentScore += 1 
+        const resultMessage= `<p style="color:green;">Correct</p>`
+        gradeArea.innerHTML = resultMessage
+        const reqObj = {
+          method: 'PATCH',
+          headers: {
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify({currentScore})
+        }
+        
+        sessionID = event.target.dataset.id
+        fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj)
+        .then(resp => resp.json())
+        .then(respData => {
+          sessionData(respData)
+          Next(respData)
+        })
+        nextButton(graph)
+        clickCount = 0
     }}
-    else if(clickCount===1){
-    const collection = document.getElementById('graph-collection')
-    collection.removeChild(document.getElementById('submit'))
-    const nextButton = `<button id='clickNext' data-id=${graph.id}> Next </button>`
-    collection.innerHTML += nextButton
-      // if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
-      //   mBox.placeholder = mBox.value
-      //   bBox.placeholder = bBox.value
-      //   currentScore += 1
-      //  const resultMessage= `<p style="color:green;">Correct</p>`
-      //  gradeArea.innerHTML = resultMessage
-      //   const reqObj = {
-      //     method: 'PATCH',
-      //     headers: {
-      //     'Content-Type':'application/json'
-      //     },
-      //     body: JSON.stringify({currentScore})
-      //   }
+    else{
+      if(clickCount===0){
+      clickCount+=1
+      console.log("ooo")
+      const resultMessage= `<p style="color:red;"> Think again,you have one time to retake this question</p>`
+      gradeArea.innerHTML = resultMessage
+      }else{
+        const collection = document.getElementById('graph-collection')
+        collection.removeChild(document.getElementById('submit'))
+        const nextButton = `<button id='clickNext' data-id=${graph.id}> Next </button>`
+        collection.innerHTML += nextButton
+        clickCount = 0
+      }
+    }
+  }
+
+  //   }else if(clickCount===0){
+  //   clickCount+=1
+  //     console.log("ooo")
+  //     const resultMessage= `<p style="color:red;"> Think again,you have one time to retake this question</p>`
+  //     gradeArea.innerHTML = resultMessage
+  //   if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
+  //     mBox.placeholder = mBox.value
+  //     bBox.placeholder = bBox.value
+  //     currentScore++  
+  //     console.log("CS",currentScore)
+  //     const resultMessage= `<p style="color:green;">Correct</p>`
+  //     gradeArea.innerHTML = resultMessage
+  //     const reqObj2 = {
+  //       method: 'PATCH',
+  //       headers: {
+  //         'Content-Type':'application/json'
+  //       },
+  //       body: JSON.stringify({currentScore})
+  //     }
       
-      //   sessionID = event.target.dataset.id
-      //   fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj)
-      //   .then(resp => resp.json())
-      //   .then(respData => {
-      //     sessionData(respData)
-      //     Next(respData)
-      //   })
-      // }
-}
-}
+  //     sessionID = event.target.dataset.id
+  //     fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj2)
+  //     .then(resp => resp.json())
+  //     .then(respData => {
+  //       sessionData(respData)
+  //       Next(respData)
+  //     })
+  //     nextButton(graph)
+  //     }}
+  //     else if(clickCount===1){
+  //     const collection = document.getElementById('graph-collection')
+  //     collection.removeChild(document.getElementById('submit'))
+  //     const nextButton = `<button id='clickNext' data-id=${graph.id}> Next </button>`
+  //     collection.innerHTML += nextButton
+
+  // }
+  // }
+
+
 function finalCall(session){
   const collection = document.getElementById('graph-collection')
   collection.innerHTML = ''
@@ -174,6 +262,7 @@ function finalCall(session){
   <h2>Final Score: ${session.score}</h2>
   <button type="button" data-id=${session.user_id} id="restart">Play Again</button>
   `
+  gradeArea.innerHTML = ``
   collection.innerHTML = finalInfo
   const sessionInfo = document.querySelector('#sessions')
   sessionInfo.innerHTML = ``
