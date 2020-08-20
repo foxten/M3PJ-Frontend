@@ -65,7 +65,8 @@ function NextGraph(graphID,session){
 
 function nextButton(graph){
   const collection = document.getElementById('graph-collection')
-  if (graph.id === 3){
+  collection.removeChild(document.getElementById('submit'))
+  if (graph.id === 5){
     const finishButton = `<button id='finished' data-id=${graph.id}> Finished </button>`
     collection.innerHTML += finishButton
   } else {
@@ -145,14 +146,11 @@ function checkGrade(graph, session){
       } else if (clickCount === 1){
         const resultMessage= `<p style="color:red;"> The correct answer is: ${graph.equation}</p>`
         gradeArea.innerHTML = resultMessage
-        const collection = document.getElementById('graph-collection')
-        collection.removeChild(document.getElementById('submit'))
-        const nextButton = `<button id='clickNext' data-id=${graph.id}> Next </button>`
-        collection.innerHTML += nextButton
+        nextButton(graph)
         Next(session)
         clickCount = 0
       }      
-      console.log(clickCount)
+      console.log(gradeArea)
     }
 }
 
