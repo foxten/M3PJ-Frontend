@@ -2,9 +2,10 @@ const graphURL="http://localhost:3000/graphs"
 let currentScore = 0
 
 
-function fetchGraphs(sessionId){
+
+function fetchGraphs(session){
   // fetch(`${graphURL}/${graphID}`)
-  fetch(`http://localhost:3000/graphs/32`)
+  fetch(`http://localhost:3000/graphs/1`)
 
   .then(resp => resp.json())
   .then(jsonData => {
