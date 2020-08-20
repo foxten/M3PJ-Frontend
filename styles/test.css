@@ -1,13 +1,14 @@
 body  {
     background-color: #FAFBFB;
-    font-family: "Lucida Console", Monaco, monospace;
+    font-family: Georgia,Times,Times New Roman,serif;
+    background-image: linear-gradient(-90deg, #829DC2, #204B86);
   }
 
   .graph-img{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 90%;
   }
   
   
@@ -15,8 +16,8 @@ body  {
     text-align: center;
     border: grey solid;
     padding: 2rem;
-    width: 25rem;
-    height: 40rem;
+    width: 70%;
+
     display: inline-grid;
     margin-left: auto;
     margin-right: auto;
@@ -42,37 +43,57 @@ body  {
   
   
   #header {
-    background-color: #71B9DA;
+    background-color: #204B86;
     color: white;
-    font-size: 42px;
-    text-align: center;;
-    padding: 10px;
+    font-family: Georgia,Times,Times New Roman,serif; 
+    font-size: 60px;
+    text-align: left;
+    padding-top: 50px;
+    padding-right: auto;
+    padding-bottom: 0px;
+    padding-left: 50px;
 }
+    #subtext {
+        background-color: #204B86;
+        color: white;
+        font-family: Georgia,Times,Times New Roman,serif; 
+        font-size: 30px;
+        text-align: left;
+        padding-top: 10px;
+        padding-right: auto;
+        padding-bottom: 40px;
+        padding-left: 50px;
+    }
 
-.dashboard {
+#dashboard {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
-    width: 80%;
+    width: 85%;
+    color: white;
+    font-family: Georgia,Times,Times New Roman,serif;
+
 }
 
 form {
     width: 80%; 
     margin-left: auto;
     margin-right: auto;
+    font-family: Georgia,Times,Times New Roman,serif;
+    
 }
 
 button {
     background-color: #71B9DA; 
     border: none;
     color: white;
-    padding: 10px 15px;
+    padding: 8px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
-    font-family: "Lucida Console", Monaco, monospace;
+    font-family: Georgia,Times,Times New Roman,serif; 
 }
 
 #submit {
@@ -84,15 +105,22 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
-    font-family: "Lucida Console", Monaco, monospace;
+    font-family: Georgia,Times,Times New Roman,serif; 
 }
 
 #graph-collection {
     font-size: 15px;
+    font-family: Georgia,Times,Times New Roman,serif;
 }
 
 #scores {
     font-size: 20;
+    font-family: Georgia,Times,Times New Roman,serif;
+}
+
+#leaderboard{
+    font-family: Georgia,Times,Times New Roman,serif;
+    color: white;
 }
 
 
