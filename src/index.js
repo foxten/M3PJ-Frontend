@@ -15,8 +15,10 @@ function fetchGraphs(sessionId){
   }
 
 function renderGraph(graph){
+
   const card = `<div class="card" style="background-color:white;">
   <h4>${graph.id}. Input your answer. </h4>
+
   <img src=${graph.image_url}.png class="graph-img" width="250" height="200"/>
   <br>
   <p>Y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x+ <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
@@ -30,7 +32,7 @@ function renderGraph(graph){
 function checkButton(graph, session){
   const collection = document.getElementById('graph-collection')
   collection.innerHTML += `<button id="submit" data-id=${session.id}> Check </button>`
-  submit(graph, session)
+  submit(graph)
 }
 
 function sessionData(session){
@@ -39,10 +41,10 @@ function sessionData(session){
 }
 
 
-function submit(graph, session){
+function submit(graph){
   const submit = document.getElementById("submit")
   submit.addEventListener('click',function(event){
-  checkGrade(graph, session)
+    checkGrade(graph)
   })
 }
 
@@ -59,7 +61,7 @@ fetch(`${graphURL}/${updateGraphID}`)
 function nextButton(graph){
   console.log(graph.id)
   const collection = document.getElementById('graph-collection')
-  if (graph.id === 2){
+  if (graph.id === 31){
     const finishButton = `<button id='finished' data-id=${graph.id}> Finished </button>`
     collection.innerHTML += finishButton
   } else {
@@ -75,39 +77,44 @@ function Next(session){
       NextGraph(graphID,session)
     }else if (event.target.id === 'finished'){
       console.log('clicker works')
-      // finalGirl()
+      finalCall(session)
     }
   })
 }
 
-function checkGrade(graph, session){
+function checkGrade(graph){
   const mBox = document.getElementById("inputM")
   const bBox = document.getElementById("inputB")
-  console.log(session.score)
   if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
-      currentScore += 2
-      const reqObj = {
-        method: 'PATCH',
-        headers: {
-          'Content-Type':'application/json'
-        },
-        body: JSON.stringify({currentScore})
-      }
-
-      fetch(`http://localhost:3000/sessions/${session.id}`, reqObj)
-        .then(resp => resp.json())
-          .then(respData => sessionData(respData))
-      
-      
-    
-      nextButton(graph)
-      Next(session)
-      
-    }else{
-      console.log("retry")
+    mBox.placeholder = mBox.value
+    bBox.placeholder = bBox.value
+    currentScore += 2
+    const reqObj = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({currentScore})
     }
+    
+    fetch(`http://localhost:3000/sessions/${event.target.dataset.id}`, reqObj)
+    .then(resp => resp.json())
+    .then(respData => {
+      sessionData(respData)
+      Next(respData)
+    })
+    nextButton(graph)
+  
+  }else{
+    console.log(event.target)
+  }
 }
 
-function finalGirl(){
-
+function finalCall(session){
+  const collection = document.getElementById('graph-collection')
+  collection.innerHTML = ''
+  // console.log(session)
+  const finalInfo = `
+  <h2>Final Score: ${session.score}</h2>`
+  collection.innerHTML = finalInfo
 }
