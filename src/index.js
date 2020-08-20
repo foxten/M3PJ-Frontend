@@ -62,7 +62,7 @@ fetch(`${graphURL}/${updateGraphID}`)
 function nextButton(graph){
   console.log(graph.id)
   const collection = document.getElementById('graph-collection')
-  if (graph.id === 2){
+  if (graph.id === 31){
     const finishButton = `<button id='finished' data-id=${graph.id}> Finished </button>`
     collection.innerHTML += finishButton
   } else {
