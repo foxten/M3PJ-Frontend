@@ -2,6 +2,7 @@ const graphURL="http://localhost:3000/graphs"
 let currentScore = 0
 
 
+
 function fetchGraphs(session){
   // fetch(`${graphURL}/${graphID}`)
   fetch(`http://localhost:3000/graphs/1`)
