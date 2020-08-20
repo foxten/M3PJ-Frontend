@@ -67,7 +67,7 @@ body  {
 
 #dashboard {
     display: block;
-    margin-left: auto;
+    margin-left: 30px;
     margin-right: auto;
     margin-top: 20px;
     width: 85%;
@@ -116,16 +116,28 @@ button {
 #scores {
     font-size: 20;
     font-family: Georgia,Times,Times New Roman,serif;
+    padding-left: 80px;
 }
 
 #leaderboard{
     font-family: Georgia,Times,Times New Roman,serif;
     color: white;
+    padding-left: 80px;
 }
 
 #sessions {
     color: white;
+    padding-left: 63px;
   }
+
+
+#inputM {
+    width: 18px; 
+}
+
+#inputB {
+    width: 18px; 
+}
   
 
 
