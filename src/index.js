@@ -61,7 +61,7 @@ fetch(`${graphURL}/${updateGraphID}`)
 function nextButton(graph){
   console.log(graph.id)
   const collection = document.getElementById('graph-collection')
-  if (graph.id === 31){
+  if (graph.id === 2){
     const finishButton = `<button id='finished' data-id=${graph.id}> Finished </button>`
     collection.innerHTML += finishButton
   } else {
@@ -114,6 +114,8 @@ function finalCall(session){
   collection.innerHTML = ''
   // console.log(session)
   const finalInfo = `
-  <h2>Final Score: ${session.score}</h2>`
+  <h2>Final Score: ${session.score}</h2>
+  <button type="button" data-id=${session.user_id} id="restart">Play Again</button>
+  `
   collection.innerHTML = finalInfo
 }
