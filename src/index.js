@@ -4,29 +4,29 @@ let clickCount = 0
 
 function fetchGraphs(session){
   fetch(`http://localhost:3000/graphs/1`)
+    .then(resp => resp.json())
+      .then(jsonData => {
+        renderGraph(jsonData)
+        checkButton(jsonData, session)
+        sessionData(session)
+      })
+}
 
-  .then(resp => resp.json())
-  .then(jsonData => {
-  renderGraph(jsonData)
-  checkButton(jsonData, session)
-  sessionData(session)
-    })
-  }
 function renderGraph(graph){
   const card = `<div class="card" style="background-color:white;">
   <h4>${graph.id}. Input your answer. </h4>
   <img src=${graph.image_url}.png class="graph-img"/>
   <br>
-  <p>y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x + <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
+  <p>y = <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x + <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
 
   </div>`
   const collection = document.getElementById('graph-collection')
   collection.innerHTML = card
 }
+
 function checkButton(graph, session){
   console.log("session",session)
   const collection = document.getElementById('graph-collection')
-  // collection.innerHTML += `<button id="submit" data-id=${session.id}> Check </button>`
   collection.innerHTML += `
   <button id="submit" data-id=${session.id} data-clickCount=0 > Check </button>
   `
@@ -41,21 +41,22 @@ function sessionData(session){
 function submit(graph, session){
   const submit = document.getElementById("submit")
   submit.addEventListener('click',function(event){
-    // console.log("event",event.target)
     checkGrade(graph, session)
     console.log("in submit function, line 58")
   })
 }
+
 function NextGraph(graphID,session){
   gradeArea.innerHTML = ''
   let updateGraphID = parseInt(graphID) + 1
   fetch(`${graphURL}/${updateGraphID}`)
-  .then(resp => resp.json())
-    .then(jsonData => {
-    renderGraph(jsonData)
-    checkButton(jsonData, session)
-  })
+    .then(resp => resp.json())
+      .then(jsonData => {
+        renderGraph(jsonData)
+        checkButton(jsonData, session)
+    })
 }
+
 function nextButton(graph){
   const collection = document.getElementById('graph-collection')
   collection.removeChild(document.getElementById('submit'))
@@ -67,6 +68,7 @@ function nextButton(graph){
     collection.innerHTML += nextButton
   }
 }
+
 function Next(session){
   document.addEventListener('click', function(event){
     if (event.target.id === 'clickNext'){
@@ -78,9 +80,7 @@ function Next(session){
   })
 }
 
-
 function checkGrade(graph, session){
-
   const mBox = document.getElementById("inputM")
   const bBox = document.getElementById("inputB")
     if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
@@ -101,10 +101,10 @@ function checkGrade(graph, session){
         sessionID = event.target.dataset.id
         fetch(`http://localhost:3000/sessions/${sessionID}`, reqObj)
         .then(resp => resp.json())
-        .then(respData => {
-          sessionData(respData)
-          Next(respData)
-        })
+          .then(respData => {
+            sessionData(respData)
+            Next(respData)
+          })
         nextButton(graph)
       } else if (clickCount === 1){
         mBox.placeholder = mBox.value
@@ -130,6 +130,7 @@ function checkGrade(graph, session){
         nextButton(graph)
         clickCount = 0
         }
+
     } else if (parseInt(mBox.value) !== graph.m && parseInt(bBox.value) === graph.b 
     || parseInt(mBox.value) !== graph.m  && parseInt(bBox.value) !== graph.b 
     || parseInt(mBox.value) === graph.m  && parseInt(bBox.value) !== graph.b){

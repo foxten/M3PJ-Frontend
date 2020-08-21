@@ -7,6 +7,13 @@ function originalDiv(){
     <input type='text' placeholder="Username"></input>
     <input type='submit' id='submit' value='Login'></input>
   </form>`
+
+  const graphArea = document.getElementById('graph-collection')
+  graphArea.innerHTML =``
+  const scores = document.getElementById('leaderboard')
+  scores.innerHTML = ``
+  gradeArea.innerHTML = ``
+  sessions.innerHTML = ``
 }
 
 function newUserListener(){
@@ -53,6 +60,10 @@ function editUserInfo(event){
 }
 
 function userDashboard(user){
+    const leaderBoard = document.getElementById('leaderboard')
+    leaderBoard.innerHTML += `<h4>Score Board</h4><ul id='leader-board'>
+    </ul>`
+
     const dashboard = document.querySelector('#dashboard')
     dashboard.dataset.id = user.id
     const userInfo = `
