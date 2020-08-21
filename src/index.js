@@ -17,7 +17,7 @@ function renderGraph(graph){
   <h4>${graph.id}. Input your answer. </h4>
   <img src=${graph.image_url}.png class="graph-img"/>
   <br>
-  <p>y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x+ <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
+  <p>y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x + <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
 
   </div>`
   const collection = document.getElementById('graph-collection')
@@ -39,7 +39,6 @@ function sessionData(session){
 }
 
 function submit(graph, session){
-
   const submit = document.getElementById("submit")
   submit.addEventListener('click',function(event){
     // console.log("event",event.target)
@@ -157,6 +156,7 @@ function finalCall(session){
   <h2>Final Score: ${session.score}</h2>
   <button type="button" data-id=${session.user_id} id="restart">Play Again</button>
   `
+  gradeArea.innerHTML = ``
   collection.innerHTML = finalInfo
   const sessionInfo = document.querySelector('#sessions')
   sessionInfo.innerHTML = ``

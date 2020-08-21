@@ -136,12 +136,12 @@ button {
 
 
 #inputM {
-    width: 25px; 
+    width:35px; 
     font-size: 30px;
 }
 
 #inputB {
-    width: 25px; 
+    width: 35px; 
     font-size: 30px;
 }
 
@@ -155,6 +155,11 @@ button {
     display: inline-block;
     font-size: 15px;
     font-family: Georgia,Times,Times New Roman,serif; 
+}
+
+#gradeArea {
+    font-family: Georgia,Times,Times New Roman,serif;
+    font-size: 15px;
 }
   
 
