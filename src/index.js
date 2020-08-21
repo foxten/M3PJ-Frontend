@@ -12,22 +12,17 @@ function fetchGraphs(session){
   sessionData(session)
     })
   }
-
 function renderGraph(graph){
-
   const card = `<div class="card" style="background-color:white;">
   <h4>${graph.id}. Input your answer. </h4>
-
-  <img src=${graph.image_url}.png class="graph-img" width="250" height="200"/>
+  <img src=${graph.image_url}.png class="graph-img"/>
   <br>
   <p>y =  <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x+ <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
 
   </div>`
-
   const collection = document.getElementById('graph-collection')
   collection.innerHTML = card
 }
-
 function checkButton(graph, session){
   console.log("session",session)
   const collection = document.getElementById('graph-collection')
@@ -44,6 +39,7 @@ function sessionData(session){
 }
 
 function submit(graph, session){
+
   const submit = document.getElementById("submit")
   submit.addEventListener('click',function(event){
     // console.log("event",event.target)
@@ -51,7 +47,6 @@ function submit(graph, session){
     console.log("in submit function, line 58")
   })
 }
-
 function NextGraph(graphID,session){
   gradeArea.innerHTML = ''
   let updateGraphID = parseInt(graphID) + 1
@@ -62,7 +57,6 @@ function NextGraph(graphID,session){
     checkButton(jsonData, session)
   })
 }
-
 function nextButton(graph){
   const collection = document.getElementById('graph-collection')
   collection.removeChild(document.getElementById('submit'))
@@ -74,7 +68,6 @@ function nextButton(graph){
     collection.innerHTML += nextButton
   }
 }
-
 function Next(session){
   document.addEventListener('click', function(event){
     if (event.target.id === 'clickNext'){
@@ -86,7 +79,9 @@ function Next(session){
   })
 }
 
+
 function checkGrade(graph, session){
+
   const mBox = document.getElementById("inputM")
   const bBox = document.getElementById("inputB")
     if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
@@ -153,7 +148,6 @@ function checkGrade(graph, session){
       console.log(gradeArea)
     }
 }
-
 
 function finalCall(session){
   gradeArea.innerHTML = ''
