@@ -14,6 +14,7 @@ function originalDiv(){
   scores.innerHTML = ``
   gradeArea.innerHTML = ``
   sessions.innerHTML = ``
+  newUserListener()
 }
 
 function newUserListener(){
@@ -33,7 +34,6 @@ function newUserListener(){
         .then(resp => resp.json())
             .then(respData => {    
             userDashboard(respData)
-            userLeaderboard(respData)
             })
     })
 }
@@ -61,8 +61,9 @@ function editUserInfo(event){
 
 function userDashboard(user){
     const leaderBoard = document.getElementById('leaderboard')
-    leaderBoard.innerHTML += `<h4>Score Board</h4><ul id='leader-board'>
+    leaderBoard.innerHTML = `<h4>Score Board</h4><ul id='leader-board'>
     </ul>`
+    userLeaderboard(user)
 
     const dashboard = document.querySelector('#dashboard')
     dashboard.dataset.id = user.id
@@ -106,7 +107,7 @@ function userLeaderboard(user){
     const leaderBoard = document.querySelector('#leader-board')
         if (user.sessions.length > 0){
             user.sessions.forEach(session => {
-            const newItem = `<li>${session.score}</li>`
+            const newItem = `<li>${session.score} points</li>`
             leaderBoard.innerHTML += newItem
         })
         }else{
