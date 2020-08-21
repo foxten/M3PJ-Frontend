@@ -14,6 +14,7 @@ function originalDiv(){
   scores.innerHTML = ``
   gradeArea.innerHTML = ``
   sessions.innerHTML = ``
+  newUserListener()
 }
 
 function newUserListener(){
