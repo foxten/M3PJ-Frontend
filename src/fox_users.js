@@ -107,7 +107,7 @@ function userLeaderboard(user){
     const leaderBoard = document.querySelector('#leader-board')
         if (user.sessions.length > 0){
             user.sessions.forEach(session => {
-            const newItem = `<li>${session.score}</li>`
+            const newItem = `<li>${session.score} points</li>`
             leaderBoard.innerHTML += newItem
         })
         }else{
