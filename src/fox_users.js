@@ -33,7 +33,6 @@ function newUserListener(){
         .then(resp => resp.json())
             .then(respData => {    
             userDashboard(respData)
-            userLeaderboard(respData)
             })
     })
 }
@@ -61,8 +60,9 @@ function editUserInfo(event){
 
 function userDashboard(user){
     const leaderBoard = document.getElementById('leaderboard')
-    leaderBoard.innerHTML += `<h4>Score Board</h4><ul id='leader-board'>
+    leaderBoard.innerHTML = `<h4>Score Board</h4><ul id='leader-board'>
     </ul>`
+    userLeaderboard(user)
 
     const dashboard = document.querySelector('#dashboard')
     dashboard.dataset.id = user.id
