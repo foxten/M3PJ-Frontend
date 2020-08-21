@@ -78,7 +78,9 @@ function Next(session){
   })
 }
 
+
 function checkGrade(graph, session){
+
   const mBox = document.getElementById("inputM")
   const bBox = document.getElementById("inputB")
     if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
@@ -145,7 +147,6 @@ function checkGrade(graph, session){
       console.log(gradeArea)
     }
 }
-
 
 function finalCall(session){
   gradeArea.innerHTML = ''
