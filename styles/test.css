@@ -118,12 +118,18 @@ button {
 }
 
 #scores {
-    font-size: 20;
+    font-size: 30px;
     font-family: Georgia,Times,Times New Roman,serif;
     padding-left: 80px;
 }
 
 #leaderboard{
+    font-family: Georgia,Times,Times New Roman,serif;
+    color: #204B86;
+    padding-left: 80px;
+}
+#leader-board{
+    font-size: 20px;
     font-family: Georgia,Times,Times New Roman,serif;
     color: #204B86;
     padding-left: 80px;
@@ -159,10 +165,12 @@ button {
 
 #gradeArea {
     font-family: Georgia,Times,Times New Roman,serif;
-    font-size: 15px;
+    font-size: 25px;
 }
   
-
+input {
+    color: #204B86;
+}
 
   
   
