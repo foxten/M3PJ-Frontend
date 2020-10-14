@@ -1,15 +1,22 @@
 const graphURL="http://localhost:3000/graphs"
+const collection = document.getElementById('graph-collection')
+const sessionInfo = document.querySelector('#sessions')
+
+
 let currentScore = 0
 let clickCount = 0
 
 function fetchGraphs(session){
   fetch(`http://localhost:3000/graphs/1`)
-    .then(resp => resp.json())
-      .then(jsonData => {
-        renderGraph(jsonData)
-        checkButton(jsonData, session)
-        sessionData(session)
-      })
+  .then(resp => resp.json())
+  .then(jsonData => {
+    renderGraph(jsonData)
+    checkButton(jsonData, session)
+    sessionData(session)
+  })
+    let runningScore = `<li id='running-score-${session.id}' style="color:red;"></li>`
+    const leaderBoard = document.getElementById('leader-board')
+    leaderBoard.innerHTML += runningScore
 }
 
 function renderGraph(graph){
@@ -20,13 +27,10 @@ function renderGraph(graph){
   <p>y = <input type="text" class="checkM" id="inputM" placeholder="m" size="3" /> x + <input type="text" class="checkB" id="inputB" placeholder="b" size="3" /> 
 
   </div>`
-  const collection = document.getElementById('graph-collection')
   collection.innerHTML = card
 }
 
 function checkButton(graph, session){
-  console.log("session",session)
-  const collection = document.getElementById('graph-collection')
   collection.innerHTML += `
   <button id="submit" data-id=${session.id} data-clickCount=0 > Check </button>
   `
@@ -34,15 +38,14 @@ function checkButton(graph, session){
 }
 
 function sessionData(session){
-  const sessionInfo = document.querySelector('#sessions')
   sessionInfo.innerHTML = `<h2>Current Score: ${session.score}</h2>`
 }
 
 function submit(graph, session){
   const submit = document.getElementById("submit")
   submit.addEventListener('click',function(event){
+    event.preventDefault()
     checkGrade(graph, session)
-    console.log("in submit function, line 58")
   })
 }
 
@@ -58,7 +61,6 @@ function NextGraph(graphID,session){
 }
 
 function nextButton(graph){
-  const collection = document.getElementById('graph-collection')
   collection.removeChild(document.getElementById('submit'))
   if (graph.id === 5){
     const finishButton = `<button id='finished' data-id=${graph.id}> Finished </button>`
@@ -84,12 +86,12 @@ function checkGrade(graph, session){
   const mBox = document.getElementById("inputM")
   const bBox = document.getElementById("inputB")
     if (parseInt(mBox.value) === graph.m  && parseInt(bBox.value) === graph.b){
+      mBox.placeholder = mBox.value
+      bBox.placeholder = bBox.value
+      const resultMessage= `<p style="color:green;">Correct</p>`
+      gradeArea.innerHTML = resultMessage
       if (clickCount === 0){
-        mBox.placeholder = mBox.value
-        bBox.placeholder = bBox.value
         currentScore += 2 
-        const resultMessage= `<p style="color:green;">Correct</p>`
-        gradeArea.innerHTML = resultMessage
         const reqObj = {
           method: 'PATCH',
           headers: {
@@ -107,11 +109,7 @@ function checkGrade(graph, session){
           })
         nextButton(graph)
       } else if (clickCount === 1){
-        mBox.placeholder = mBox.value
-        bBox.placeholder = bBox.value
         currentScore += 1 
-        const resultMessage= `<p style="color:green;">Correct</p>`
-        gradeArea.innerHTML = resultMessage
         const reqObj = {
           method: 'PATCH',
           headers: {
@@ -131,9 +129,7 @@ function checkGrade(graph, session){
         clickCount = 0
         }
 
-    } else if (parseInt(mBox.value) !== graph.m && parseInt(bBox.value) === graph.b 
-    || parseInt(mBox.value) !== graph.m  && parseInt(bBox.value) !== graph.b 
-    || parseInt(mBox.value) === graph.m  && parseInt(bBox.value) !== graph.b){
+    } else{
       if(clickCount === 0){
         const resultMessage= `<p style="color:red;"> Think again,you have one time to retake this question</p>`
         gradeArea.innerHTML = resultMessage
@@ -145,20 +141,22 @@ function checkGrade(graph, session){
         Next(session)
         clickCount = 0
       }      
-      console.log(gradeArea)
     }
 }
 
 function finalCall(session){
+  let previousRun = `${session.id}`-1
+  if(document.getElementById(`running-score-${previousRun}`)){
+    document.getElementById(`running-score-${previousRun}`).style.color = '#204B86'
+  }
+  document.getElementById(`running-score-${session.id}`).innerHTML = `${session.score} points`
   gradeArea.innerHTML = ''
-  const collection = document.getElementById('graph-collection')
-  collection.innerHTML = ''
   const finalInfo = `
   <h2>Final Score: ${session.score}</h2>
   <button type="button" data-id=${session.user_id} id="restart">Play Again</button>
   `
   gradeArea.innerHTML = ``
   collection.innerHTML = finalInfo
-  const sessionInfo = document.querySelector('#sessions')
   sessionInfo.innerHTML = ``
+  currentScore = 0
 }
