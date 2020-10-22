@@ -22,7 +22,7 @@ This project uses a Ruby on Rails backend, JavaScript (the most vanilla) on the 
 
 ## How to Play
 
-![](/Users/tenaysiafox/Flatiron/code/Module3/Mod3-Project-Complete/M3PJ-Frontend/Graph It Instructions.gif)
+![](M3PJ-Frontend/Graph It Instructions.gif)
 
 1. Choose a username and click 'Login'.
 2. Click 'Start a New Game' beneath the welcome message.
