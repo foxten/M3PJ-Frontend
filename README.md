@@ -10,6 +10,9 @@
 
 Graphs and equations and games, oh my! 
 
+For our Flatiron Software Engineering Module 3 project, Kathleen Brennan, Yann Yang, and I decided to try our hand at creating a single-level graphing game. 
+
+
 ## Tech
 
 This project uses a Ruby on Rails backend, JavaScript (the most vanilla) on the frontend, and includes styling from Materialize. 
@@ -31,7 +34,7 @@ This project uses a Ruby on Rails backend, JavaScript (the most vanilla) on the 
 5. If correct, 'Check' button should be replaced by a 'Next' button. Click 'Next' to proceed.
 
 ### Scoring
-    - Players have two opportunities to submit the correct answer. 
+    Players have two opportunities to submit the correct answer. 
       - If the answer is correct on the first attempt, 2 points are added to the overall score.
       - If the correct answer is submitted on the second attempt, 1 point is added to the overall score. 
 
