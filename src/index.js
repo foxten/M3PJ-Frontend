@@ -62,7 +62,7 @@ function NextGraph(graphID,session){
 
 function nextButton(graph){
   collection.removeChild(document.getElementById('submit'))
-  if (graph.id === 5){
+  if (graph.id === 30){
     const finishButton = `<button id='finished' data-id=${graph.id}> Finished </button>`
     collection.innerHTML += finishButton
   } else {
